@@ -19,6 +19,11 @@ exec { 'add-repository':
   require => Package['python-software-properties'],
 }
 
+exec { 'install composer':
+  command => 'curl -sS https://getcomposer.org/installer | php && sudo mv composer.phar /usr/local/bin/composer',
+  require => Package['curl','php5'],
+}
+
 package { $system_packages:
   ensure  => "installed",
   require => Exec['apt-get update'],

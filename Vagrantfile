@@ -8,6 +8,11 @@ Vagrant.configure("2") do |config|
   config.vm.network :private_network, ip: "192.168.33.102"
   config.vm.network :forwarded_port, host: 4568, guest: 80
 
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 1024
+    v.name   = "Moodle 2.8 Stable"
+  end
+
   config.vm.provision :puppet do |puppet|
     puppet.module_path = "modules"
   end
